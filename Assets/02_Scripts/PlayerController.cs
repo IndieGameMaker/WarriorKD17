@@ -68,6 +68,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.spaceKey.isPressed)
+        {
+            Debug.Log("Jump");
+        }
+
+        if (Mouse.current.rightButton.isPressed)
+        {
+            Debug.Log("오른쪽 마우스 버튼");
+        }
+
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Warrior_Attack"))
         {
             return;
