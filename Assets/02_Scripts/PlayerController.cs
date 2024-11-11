@@ -32,6 +32,20 @@ public class PlayerController : MonoBehaviour
         attackAction.performed += OnAttack;
     }
 
+    private void OnDisable()
+    {
+        // 이동처리 이벤트 해지
+        moveAction.performed -= OnMove;
+        moveAction.canceled -= (ctx) => moveInput = Vector2.zero;
+
+        // 공격 이벤트 해지
+        attackAction.performed -= OnAttack;
+
+        // 액션을 비활성화
+        moveAction.Disable();
+        attackAction.Disable();
+    }
+
     private void OnAttack(InputAction.CallbackContext context)
     {
         Debug.Log("공격");
