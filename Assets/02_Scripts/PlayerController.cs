@@ -4,18 +4,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset inputActions;
+    // [SerializeField] private InputActionAsset inputActions;
 
-    private InputAction moveAction;
-    private InputAction attackAction;
+    [SerializeField] private InputAction moveAction;
+    [SerializeField] private InputAction attackAction;
 
     private Vector2 moveInput;
 
     private void Awake()
     {
         // 액션을 찾아서 할당
-        moveAction = inputActions.FindAction("Move");
-        attackAction = inputActions.FindAction("Attack");
+        // moveAction = inputActions.FindAction("Move");
+        // attackAction = inputActions.FindAction("Attack");
     }
 
     private void OnEnable()
