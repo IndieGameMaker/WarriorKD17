@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
 
         // 이동처리 이벤트 등록
         moveAction.performed += OnMove;
+        moveAction.canceled += (ctx) => moveInput = Vector2.zero;
+
+        // 공격 이벤트 등록
+        attackAction.performed += OnAttack;
     }
 
     private void OnMove(InputAction.CallbackContext context)
