@@ -15,8 +15,13 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController cc;
     private CinemachineCamera cinemachineCamera;
+    private Animator animator;
 
     private Vector2 moveInput;
+
+    // Animator Parameter Hash
+    private int hashAttack = Animator.StringToHash("Attack");
+    private int hashMovement = Animator.StringToHash("Movement");
 
     private void Awake()
     {
@@ -26,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
         cc = GetComponent<CharacterController>();
         cinemachineCamera = GameObject.Find("CinemachineCamera")?.GetComponent<CinemachineCamera>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -36,7 +42,11 @@ public class PlayerController : MonoBehaviour
 
         // 이동처리 이벤트 등록
         moveAction.action.performed += OnMove;
-        moveAction.action.canceled += (ctx) => moveInput = Vector2.zero;
+        moveAction.action.canceled += (ctx) =>
+        {
+            moveInput = Vector2.zero;
+            Debug.Log(moveInput);
+        };
 
         // 공격 이벤트 등록
         attackAction.action.performed += OnAttack;
@@ -58,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        animator.SetFloat(hashMovement, moveInput.sqrMagnitude);
+
         // 입력값이 없을 경우 실행하지 않는다.
         if (moveInput.sqrMagnitude < 0.1f * 0.1f) return;
 
@@ -87,6 +99,7 @@ public class PlayerController : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext context)
     {
         Debug.Log("공격");
+        animator.SetTrigger(hashAttack);
     }
 
     private void OnMove(InputAction.CallbackContext context)
