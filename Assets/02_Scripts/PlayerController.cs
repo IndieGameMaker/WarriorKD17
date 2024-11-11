@@ -68,7 +68,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Warrior_Attack"))
+        {
+            return;
+        }
+
         animator.SetFloat(hashMovement, moveInput.sqrMagnitude);
+        Debug.Log(moveInput.sqrMagnitude);
 
         // 입력값이 없을 경우 실행하지 않는다.
         if (moveInput.sqrMagnitude < 0.1f * 0.1f) return;
