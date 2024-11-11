@@ -70,6 +70,11 @@ public class PlayerController : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
+        Vector3 moveDir = (camForward * moveInput.y) + (camRight * moveInput.x);
+        moveDir.Normalize();
+
+        //cc.SimpleMove(방향 * 속도)
+        cc.Move(moveDir * moveSpeed * Time.deltaTime);
     }
 
     private void OnAttack(InputAction.CallbackContext context)
