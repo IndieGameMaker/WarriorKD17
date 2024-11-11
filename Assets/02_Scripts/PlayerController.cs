@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     // [SerializeField] private InputActionAsset inputActions;
 
-    [SerializeField] private InputAction moveAction;
-    [SerializeField] private InputAction attackAction;
+    [SerializeField] private InputActionProperty moveAction;
+    [SerializeField] private InputActionProperty attackAction;
 
     private Vector2 moveInput;
 
