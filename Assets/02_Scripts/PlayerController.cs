@@ -21,29 +21,29 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         // 액션을 활성화
-        moveAction.Enable();
-        attackAction.Enable();
+        // moveAction.Enable();
+        // attackAction.Enable();
 
         // 이동처리 이벤트 등록
-        moveAction.performed += OnMove;
-        moveAction.canceled += (ctx) => moveInput = Vector2.zero;
+        moveAction.action.performed += OnMove;
+        moveAction.action.canceled += (ctx) => moveInput = Vector2.zero;
 
         // 공격 이벤트 등록
-        attackAction.performed += OnAttack;
+        attackAction.action.performed += OnAttack;
     }
 
     private void OnDisable()
     {
         // 이동처리 이벤트 해지
-        moveAction.performed -= OnMove;
-        moveAction.canceled -= (ctx) => moveInput = Vector2.zero;
+        moveAction.action.performed -= OnMove;
+        moveAction.action.canceled -= (ctx) => moveInput = Vector2.zero;
 
         // 공격 이벤트 해지
-        attackAction.performed -= OnAttack;
+        attackAction.action.performed -= OnAttack;
 
         // 액션을 비활성화
-        moveAction.Disable();
-        attackAction.Disable();
+        // moveAction.Disable();
+        // attackAction.Disable();
     }
 
     private void OnAttack(InputAction.CallbackContext context)
