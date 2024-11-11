@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour
         attackAction.performed += OnAttack;
     }
 
+    private void OnAttack(InputAction.CallbackContext context)
+    {
+        Debug.Log("공격");
+    }
+
     private void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
